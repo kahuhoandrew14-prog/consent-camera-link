@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Consent Camera Link</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header><div class="mark">●</div><div><h1>Consent Camera Link</h1><p class="muted">Private, permission-based live camera sharing</p></div></header>
+
+    <section id="home" class="panel">
+      <h2>Create a camera link</h2>
+      <p>Create a temporary link and send it to someone. Their camera will only start after they open the link and press <b>Allow camera and start sharing</b>.</p>
+      <button id="createBtn">Create sharing link</button>
+      <div id="created" class="hidden">
+        <label>Send this camera link to the person</label>
+        <div class="copyrow"><input id="shareUrl" readonly><button id="copyBtn" class="secondary">Copy</button></div>
+        <p class="small">The link expires after 15 minutes and supports one viewer at a time.</p>
+        <a id="watchLink" href="#">Open your viewing page</a>
+      </div>
+    </section>
+
+    <section id="share" class="panel hidden">
+      <span class="tag">CAMERA OWNER</span>
+      <h2>Share your camera</h2>
+      <p>You are about to share live video with the person who created this link. Only continue if you trust them.</p>
+      <ul><li>Your browser will ask for camera permission.</li><li>Your camera will not start until you press the button below.</li><li>You can stop sharing at any time.</li><li>This demo does not record or save video.</li></ul>
+      <button id="startBtn">Allow camera and start sharing</button>
+      <button id="stopBtn" class="danger hidden">Stop sharing</button>
+      <p id="shareStatus" class="status" aria-live="polite"></p>
+      <video id="localVideo" autoplay playsinline muted class="hidden"></video>
+    </section>
+
+    <section id="watch" class="panel hidden">
+      <span class="tag">PRIVATE VIEWER</span>
+      <h2>Live camera</h2>
+      <p>The camera owner must open their link and explicitly approve camera access before video appears.</p>
+      <video id="remoteVideo" autoplay playsinline controls></video>
+      <p id="watchStatus" class="status" aria-live="polite">Waiting for the camera owner to connect…</p>
+    </section>
+
+    <footer>Use only with the camera owner's informed permission. Do not use this service to monitor anyone secretly.</footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
